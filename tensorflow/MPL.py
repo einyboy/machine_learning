@@ -7,6 +7,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 file_data = "MNIST_data/"
 epochs = 3000
 batch_size = 100
+drop_prob = 0.75
 mnist= input_data.read_data_sets(file_data, one_hot=True)
 
 sess = tf.InteractiveSession()
@@ -33,7 +34,7 @@ tf.global_variables_initializer().run()
 
 for i in range(epochs):
 	batch_xs, batch_ys = mnist.train.next_batch(batch_size)
-	train_step.run({x:batch_xs, y_:batch_ys, keep_prob:0.75})
+	train_step.run({x:batch_xs, y_:batch_ys, keep_prob:drop_prob})
 	
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
