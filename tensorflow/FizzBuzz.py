@@ -45,11 +45,10 @@ def model():
 	W2 = init_weigths([NUM_HIDDEN, 4])
 	b2 = init_biases([4])
 	hidden = tf.nn.relu(tf.matmul(X, W1) + b1)
-	#hidden = tf.matmul(X, W1) + b1
 	py_x = tf.nn.softmax(tf.matmul(hidden, W2) + b2)
 	return py_x
 	
-NUM_DIGITS = 10	
+NUM_DIGITS = 12
 trX = np.array([binary_encode(i, NUM_DIGITS) for i in range(101, 2 ** NUM_DIGITS)])
 trY = np.array([fizz_buzz_encode(i) for i in range(101, 2 ** NUM_DIGITS)])
 
@@ -103,7 +102,7 @@ for epoch in range(epochs):
 				epochs, acc_rate))
 
 
-numbers = np.arange(1, 101)
+numbers = np.arange(1023, 2000)
 teX = np.transpose(binary_encode(numbers, NUM_DIGITS))
 teY = sess.run(predict, feed_dict={X: teX})
 output = np.vectorize(fizz_buzz)(numbers, teY)
