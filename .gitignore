@@ -5,7 +5,7 @@ __pycache__/
 
 # Source Package
 *.gz
-
+tensorflow/cifar10_data/
 # C extensions
 *.so
 
