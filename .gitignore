@@ -6,6 +6,13 @@ __pycache__/
 # Source Package
 *.gz
 tensorflow/cifar10_data/
+tensorflow/text8
+*.rar
+*.jpg
+*.txt
+*.png
+*.zip
+
 # C extensions
 *.so
 
