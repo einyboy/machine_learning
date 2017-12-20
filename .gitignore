@@ -7,6 +7,9 @@ __pycache__/
 *.gz
 tensorflow/cifar10_data/
 tensorflow/text8
+tensorflow/Scripts
+keras/dataset/*
+keras/*.png
 *.rar
 *.jpg
 *.txt
