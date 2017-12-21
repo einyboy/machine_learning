@@ -1,5 +1,6 @@
 #-*-coding:utf-8-*-
-
+import os
+from keras.models import load_model
 from keras.models import Sequential
 from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
@@ -35,20 +36,27 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
     target_size = (64, 64),
     batch_size = 32,
     class_mode = 'binary')
-    
-classifier.fit_generator(
-    training_set, steps_per_epoch = 8000, epochs = 25,
-    validation_data = test_set, validation_steps = 2000)
+if os.path.exists('classifier_car_and_dog_model.h5'):
+    classifier = load_model('classifier_car_and_dog_model.h5')
+else:  
+    classifier.fit_generator(
+        training_set, steps_per_epoch = 8000, epochs = 10,
+        validation_data = test_set, validation_steps = 2000)
 
-classifier.save('classifier_car_and_dog_model.h5')    
+    classifier.save('classifier_car_and_dog_model.h5')    
 import numpy as np
 from keras.preprocessing import image
-test_image = image.load_img('data/dog.jpg',
-    target_size = (64, 64))
-test_image = np.expand_dims(test_image, axis = 0)
-result = classifier.predict(test_image)
-training_set.class_indices
-if result[0][0] == 1:
-    prediction = 'dog'
-else:
-    prediction = 'cat'
+
+path='dataset/valid/'
+for filenames in os.listdir(path):
+    test_image = image.load_img(path + filenames,
+        target_size = (64, 64))
+    test_image = np.expand_dims(test_image, axis = 0)
+    result = classifier.predict(test_image)
+    training_set.class_indices
+    if result[0][0] == 1:
+        prediction = 'dog'
+    else:
+        prediction = 'cat'
+
+    print("file: {}=====this is {}.".format(filenames, prediction))
