@@ -33,7 +33,7 @@ class Crawler:
     def __save_image(self, rsp_data, word):
 
         if not os.path.exists("./" + word):
-            os.mkdir("./" + word)
+            os.mkdir("./MM/" + word)
         # 判断名字是否重复，获取图片长度
         self.__counter = len(os.listdir('./' + word)) + 1
         for image_info in rsp_data['imgs']:
@@ -120,5 +120,7 @@ class Crawler:
 if __name__ == '__main__':
     crawler = Crawler(0.05)
     # crawler.start('美女', 1, 2)
-    crawler.start('二次元 美女', 3, 3)
+    member = ['佐佐木明希','秋元真夏','生田绘梨花','生驹里奈','伊藤万理华','井上小百合','卫藤美彩','川后阳菜','川村真洋','斋藤飞鸟','斋藤千春','斉藤优里','樱井玲香','白石麻衣','深川麻衣','桥本奈奈未','高山一実','中田花奈','中元日芽香','西野七濑','能条爱未','樋口日奈','星野南','永岛圣罗','伊藤宁宁','畠中清罗','松村沙友理','若月佑美','和田玛雅','松井玲奈','渡边迷离爱','柏幸奈','新内真衣','北野日奈子','堀未央奈','伊藤卡琳','寺田兰世','佐佐木琴子','山崎怜奈','伊藤纯奈','铃木绚音','相乐伊织','伊藤理理杏','岩本莲加','梅泽美波','大园桃子','久保史绪里','阪口珠美','佐藤枫','中村丽乃','向井叶月','山下美月','吉田绫乃克莉丝蒂','与田祐希']
+    for membername in member:
+        crawler.start(membername, 17)
     # crawler.start('帅哥', 5)
