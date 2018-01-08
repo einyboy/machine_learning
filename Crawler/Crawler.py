@@ -31,16 +31,15 @@ class Crawler:
 
     # 保存图片
     def __save_image(self, rsp_data, word):
-
-        if not os.path.exists("./" + word):
+        if not os.path.exists("./MM/" + word):
             os.mkdir("./MM/" + word)
         # 判断名字是否重复，获取图片长度
-        self.__counter = len(os.listdir('./' + word)) + 1
+        self.__counter = len(os.listdir('./MM/' + word)) + 1
         for image_info in rsp_data['imgs']:
             try:
                 time.sleep(self.time_sleep)
                 fix = self.__get_suffix(image_info['objURL'])
-                urllib.request.urlretrieve(image_info['objURL'], './' + word + '/' + str(self.__counter) + str(fix))
+                urllib.request.urlretrieve(image_info['objURL'], './MM/' + word + '/' + str(self.__counter) + str(fix))
             except urllib.error.HTTPError as urllib_err:
                 print(urllib_err)
                 continue
@@ -50,7 +49,7 @@ class Crawler:
                 print("产生未知错误，放弃保存")
                 continue
             else:
-                print("小黄图+1,已有" + str(self.__counter) + "张小黄图")
+                print("小MM图+1,已有" + str(self.__counter) + "张MM图")
                 self.__counter += 1
         return
 
