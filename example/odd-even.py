@@ -47,7 +47,7 @@ def sklearn_model():
     label = np.argmax(trY,1)
     clf.fit(trX, label)
     lable = clf.predict(testX)
-    lable = np.vectorize(odd_even_decode)(testY,lable)
+    lable = np.vectorize(odd_even_decode)(testY,lable) 
     print(lable)
     print(clf.coef_)
     print(clf.intercept_)

@@ -15,7 +15,12 @@ keras/*.png
 *.txt
 *.png
 *.zip
-
+*.jpeg
+*.gz
+*.tar
+*.gif
+*.wav
+*.floy*
 # C extensions
 *.so
 
